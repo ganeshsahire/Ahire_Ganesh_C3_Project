@@ -4,6 +4,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mock;
@@ -69,5 +71,20 @@ class RestaurantTest {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
     }
+
+    @Test
+    public void selected_items_should_return_correct_total_order_price(){
+             List<String> selectedItems = new ArrayList <String>();
+             selectedItems.add("Sweet corn soup");
+             selectedItems.add("Vegetable lasagne");
+             List<Item> menu =  restaurant.getMenu();
+
+             int totalOrderCost = restaurant.getTotalOrderCost(selectedItems);
+
+            assertEquals( 388,totalOrderCost);
+
+
+    }
+
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
